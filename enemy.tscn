@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bboeggfivmkat"]
+
+[ext_resource type="Texture2D" uid="uid://fdvar6628abt" path="res://SpaceshipKit.png" id="1_qa2j8"]
+[ext_resource type="Script" path="res://enemy.gd" id="1_sfnum"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7krbf"]
+atlas = ExtResource("1_qa2j8")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2x2bx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7krbf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yw6bk"]
+radius = 21.0
+height = 52.0
+
+[node name="Enemy" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_sfnum")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_2x2bx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_yw6bk")

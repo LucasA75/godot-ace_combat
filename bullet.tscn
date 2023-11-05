@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgkjp4b0kc2ep"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_3adqi"]
+[ext_resource type="Texture2D" uid="uid://fdvar6628abt" path="res://SpaceshipKit.png" id="1_aeh7n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1bsf"]
+atlas = ExtResource("1_aeh7n")
+region = Rect2(96, 224, 30, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_22uf1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1bsf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2nxc"]
+size = Vector2(6, 10)
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_3adqi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.8, 1.8)
+sprite_frames = SubResource("SpriteFrames_22uf1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_c2nxc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
