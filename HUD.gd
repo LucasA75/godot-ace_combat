@@ -6,7 +6,6 @@ signal start_game
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -15,7 +14,7 @@ func show_message(text):
 	$Message.text = text
 	$Message.show()
 	$MessageTimer.start()
-	
+
 func show_game_over():
 	show_message('Game Over')
 	await  $MessageTimer.timeout
@@ -23,10 +22,14 @@ func show_game_over():
 	$Message.text = "Ace Combat"
 	$StartButton.show()
 	$Message.show()
+	
+func update_score(score):
+	var text = "Score : {score}"
+	$ScoreLabel.text = text.format({"score": score})
 
 
 func _on_start_button_pressed():
 	$StartButton.hide()
 	$Message.hide()
 	start_game.emit()
-	pass # Replace with function body.
+	pass # Replace with function body. 

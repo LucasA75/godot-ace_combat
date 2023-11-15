@@ -1,15 +1,22 @@
 extends Node
 @export var enemy_scene: PackedScene
 @export var bullet_scene: PackedScene
+var time = 0
+var score
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func new_game():
+	score = 0
+	$GameTime.start()
 	$Ship.start($StartPosition.position)
 	$StartTime.start()
 	$Ship.life = 3
 	$Music.play()
+	$TutorialLayer.show_tutorial()
+	get_tree().call_group("enemys","queue_free")
 	pass
 
 func game_over():
@@ -23,6 +30,7 @@ func _process(delta):
 
 func _on_enemy_timer_timeout():
 	
+	
 	var arrayEnemys = []
 	
 	for i in range(3):
@@ -32,21 +40,22 @@ func _on_enemy_timer_timeout():
 	var enemy_spawn_location = get_node("EnemyPath/EnemySpawnLocation")
 	var direction = enemy_spawn_location.rotation + PI / 2
 	enemy_spawn_location.progress_ratio = randf_range(0.091,0.380)
-	print(enemy_spawn_location.progress_ratio)
 	var positionInitial = enemy_spawn_location.position[0]
 	
 	
 	for enemy in arrayEnemys:
-		# print( arrayEnemys.find(enemy))
 		enemy.position = Vector2(positionInitial * (arrayEnemys.find(enemy)+0.5) ,0.0)
-		# print(enemy.position)
 		var velocity = Vector2(150.0,0.0)
 		enemy.linear_velocity = velocity.rotated(direction)
-	
 		add_child(enemy)
+		enemy.connect("enemy_die",_on_enemy_destroyed)
 	pass # Replace with function body.
 
-
+func _on_enemy_destroyed():
+	score += 1
+	$HUD.update_score(score)
+	pass
+		
 func _on_start_time_timeout():
 	$EnemyTimer.start()
 	pass # Replace with function body.
@@ -61,3 +70,9 @@ func _on_ship_shoot():
 	pass # Replace with function body.
 	
 
+
+
+func _on_game_time_timeout():
+	time += 1
+	print(time)
+	pass # Replace with function body.

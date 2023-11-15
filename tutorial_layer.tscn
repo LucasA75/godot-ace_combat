@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3odkfhbp8xms"]
+
+[ext_resource type="Script" path="res://tutorial_layer.gd" id="1_8vnak"]
+
+[node name="TutorialLayer" type="CanvasLayer"]
+script = ExtResource("1_8vnak")
+
+[node name="TutorialTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="MessageTutorial" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.0
+offset_top = 183.0
+offset_right = 149.0
+offset_bottom = 519.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Controles
+
+Moverse:
+WASD o flechas
+
+Disparar:
+Barra espaciadora"
+horizontal_alignment = 1

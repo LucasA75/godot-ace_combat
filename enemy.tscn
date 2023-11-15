@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bboeggfivmkat"]
+[gd_scene load_steps=9 format=3 uid="uid://bboeggfivmkat"]
 
 [ext_resource type="Texture2D" uid="uid://fdvar6628abt" path="res://SpaceshipKit.png" id="1_qa2j8"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_sfnum"]
+[ext_resource type="Texture2D" uid="uid://dswd5fio52cre" path="res://magic_particles_18.png" id="3_jgs5o"]
+[ext_resource type="Texture2D" uid="uid://bqjlwutckbu7b" path="res://magic_particles_19.png" id="4_3chnm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7krbf"]
 atlas = ExtResource("1_qa2j8")
@@ -22,10 +24,25 @@ animations = [{
 radius = 21.0
 height = 52.0
 
-[node name="Enemy" type="RigidBody2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_d0egq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jgs5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3chnm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="RigidBody2D" groups=["enemys"]]
 collision_layer = 3
 collision_mask = 0
 gravity_scale = 0.0
+max_contacts_reported = 99
 script = ExtResource("1_sfnum")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -36,3 +53,13 @@ sprite_frames = SubResource("SpriteFrames_2x2bx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_yw6bk")
+
+[node name="EliminatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_d0egq")
+frame_progress = 0.207003
+
+[node name="DieTime" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="enemy_hit" from="." to="." method="_on_enemy_hit"]

@@ -21,7 +21,8 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	# print(body)
-	hide()
-	body.queue_free()
+	if body.has_method("_on_enemy_hit"):
+		body.emit_signal("enemy_hit")
+	queue_free()
+	
 	pass # Replace with function body.
