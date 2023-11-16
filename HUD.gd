@@ -1,7 +1,6 @@
 extends CanvasLayer
-
 signal start_game
-
+@export var life_scene: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -23,6 +22,21 @@ func show_game_over():
 	$StartButton.show()
 	$Message.show()
 	
+func show_life_player(lifePlayer):
+	var distance_lifes = 17
+	for x in lifePlayer:
+		var life = life_scene.instantiate()
+		life.position = Vector2(distance_lifes, 9)
+		distance_lifes += 45
+		add_child(life)
+	pass
+	
+func update_life(numberOfLifes):
+	print(numberOfLifes)
+	get_tree().call_group("lifes","queue_free")
+	show_life_player(numberOfLifes)
+	
+
 func update_score(score):
 	var text = "Score : {score}"
 	$ScoreLabel.text = text.format({"score": score})

@@ -21,7 +21,10 @@ func level_of_enemy(level):
 		life = 1
 	elif level == 2:
 		$AnimatedSprite2D.animation = "Level2"
-		life = 2
+		life = 3
+	elif level == 3:
+		$AnimatedSprite2D.animation = "Level3"
+		life = 5
 	else:
 		var text = "not Found : Level {level}"
 		print(text.format({"level": level}))

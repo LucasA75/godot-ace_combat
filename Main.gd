@@ -1,7 +1,7 @@
 extends Node
 @export var enemy_scene: PackedScene
 @export var bullet_scene: PackedScene
-var time = 0
+var time
 var score
 
 # Called when the node enters the scene tree for the first time.
@@ -9,13 +9,16 @@ func _ready():
 	pass # Replace with function body.
 
 func new_game():
+	time = 0
 	score = 0
+	$HUD.update_score(score)
 	$GameTime.start()
 	$Ship.start($StartPosition.position)
 	$StartTime.start()
 	$Ship.life = 3
 	$Music.play()
 	$TutorialLayer.show_tutorial()
+	$HUD.show_life_player($Ship.life)
 	get_tree().call_group("enemys","queue_free")
 	pass
 
@@ -74,15 +77,17 @@ func _on_start_time_timeout():
 func _on_ship_shoot():
 	var bullet = bullet_scene.instantiate()
 	var ship_position = $Ship.position 
+	print(ship_position)
 	$SoundEffectBullet.play()
-	bullet.position = Vector2(ship_position)
+	bullet.position = Vector2(ship_position[0], ship_position[1] - 30.0)
 	add_child(bullet)
 	pass # Replace with function body.
 	
-
-
-
 func _on_game_time_timeout():
 	time += 1
-	print(time)
+	pass # Replace with function body.
+
+
+func _on_ship_hit():
+	$HUD.update_life($Ship.life)
 	pass # Replace with function body.

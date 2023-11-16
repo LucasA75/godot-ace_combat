@@ -1,13 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpcvi4fu31gtf"]
 
 [ext_resource type="Script" path="res://HUD.gd" id="1_f1x82"]
-[ext_resource type="PackedScene" uid="uid://c3odkfhbp8xms" path="res://tutorial_layer.tscn" id="2_nbpyk"]
+[ext_resource type="PackedScene" uid="uid://b2f675hl1jtlc" path="res://life.tscn" id="2_4txgc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfax1"]
 bg_color = Color(0.937255, 0.94902, 1, 1)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_f1x82")
+life_scene = ExtResource("2_4txgc")
 
 [node name="Message" type="Label" parent="."]
 anchors_preset = 8
@@ -43,8 +44,6 @@ text = "Start!"
 
 [node name="MessageTimer" type="Timer" parent="."]
 wait_time = 2.5
-
-[node name="TutorialLayer" parent="." instance=ExtResource("2_nbpyk")]
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchors_preset = 5
