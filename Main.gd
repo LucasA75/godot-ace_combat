@@ -47,9 +47,19 @@ func _on_enemy_timer_timeout():
 		enemy.position = Vector2(positionInitial * (arrayEnemys.find(enemy)+0.5) ,0.0)
 		var velocity = Vector2(150.0,0.0)
 		enemy.linear_velocity = velocity.rotated(direction)
+		enemy.level_of_enemy(change_dificulty_enemy())
 		add_child(enemy)
-		enemy.connect("enemy_die",_on_enemy_destroyed)
+		enemy.connect("enemy_die",_on_enemy_destroyed)	
 	pass # Replace with function body.
+
+func change_dificulty_enemy():
+	if time <= 40:
+		return 1
+	elif time > 40 && time <= 90:
+		return 2
+	elif time > 90:
+		return 3
+	pass
 
 func _on_enemy_destroyed():
 	score += 1

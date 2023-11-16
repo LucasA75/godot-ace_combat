@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bboeggfivmkat"]
+[gd_scene load_steps=10 format=3 uid="uid://bboeggfivmkat"]
 
 [ext_resource type="Texture2D" uid="uid://fdvar6628abt" path="res://SpaceshipKit.png" id="1_qa2j8"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_sfnum"]
@@ -9,6 +9,10 @@
 atlas = ExtResource("1_qa2j8")
 region = Rect2(288, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j5xq"]
+atlas = ExtResource("1_qa2j8")
+region = Rect2(320, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_2x2bx"]
 animations = [{
 "frames": [{
@@ -16,7 +20,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_7krbf")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Level1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j5xq")
+}],
+"loop": true,
+"name": &"Level2",
 "speed": 5.0
 }]
 
@@ -49,6 +61,7 @@ script = ExtResource("1_sfnum")
 rotation = 3.14159
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_2x2bx")
+animation = &"Level2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
