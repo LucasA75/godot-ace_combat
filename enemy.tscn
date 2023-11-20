@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bboeggfivmkat"]
+[gd_scene load_steps=12 format=3 uid="uid://bboeggfivmkat"]
 
 [ext_resource type="Texture2D" uid="uid://fdvar6628abt" path="res://SpaceshipKit.png" id="1_qa2j8"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_sfnum"]
 [ext_resource type="Texture2D" uid="uid://dswd5fio52cre" path="res://magic_particles_18.png" id="3_jgs5o"]
 [ext_resource type="Texture2D" uid="uid://bqjlwutckbu7b" path="res://magic_particles_19.png" id="4_3chnm"]
+[ext_resource type="PackedScene" uid="uid://mx4x5b41xmjp" path="res://power_up.tscn" id="5_xvf8s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7krbf"]
 atlas = ExtResource("1_qa2j8")
@@ -87,4 +88,7 @@ frame_progress = 0.207003
 [node name="DieTime" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="powerUp" parent="." instance=ExtResource("5_xvf8s")]
+
+[connection signal="enemy_die" from="." to="." method="generate_reward"]
 [connection signal="enemy_hit" from="." to="." method="_on_enemy_hit"]

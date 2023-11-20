@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://mx4x5b41xmjp"]
+
+[ext_resource type="Texture2D" uid="uid://6h1i2njv0pgy" path="res://uipackSpace_sheet.png" id="1_bemsg"]
+[ext_resource type="Script" path="res://power_up.gd" id="1_hgkwj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ceg5v"]
+atlas = ExtResource("1_bemsg")
+region = Rect2(384, 393, 24, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji3op"]
+atlas = ExtResource("1_bemsg")
+region = Rect2(384, 449, 24, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r3o63"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ceg5v")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji3op")
+}],
+"loop": true,
+"name": &"velocity",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lupqa"]
+size = Vector2(19, 26)
+
+[node name="powerUp" type="Area2D"]
+script = ExtResource("1_hgkwj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_r3o63")
+animation = &"velocity"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_lupqa")

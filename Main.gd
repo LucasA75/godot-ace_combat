@@ -33,9 +33,8 @@ func _process(delta):
 
 func _on_enemy_timer_timeout():
 	
-	
 	var arrayEnemys = []
-	
+
 	for i in range(3):
 		var enemy = enemy_scene.instantiate()
 		arrayEnemys.append(enemy)

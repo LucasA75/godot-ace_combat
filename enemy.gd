@@ -15,6 +15,15 @@ func _process(delta):
 		$CollisionShape2D.disabled = true
 	pass
 	
+func generate_reward():
+	var num_random = round(randf_range(0,12))
+	print(num_random)
+	if(num_random == 4):
+		print("Generar Recompensa de Velocidad")
+	elif(num_random == 5 ):
+		print("Generar recompensa de Ataque")
+	pass
+	
 func level_of_enemy(level):
 	if level == 1:
 		$AnimatedSprite2D.animation = "Level1"
