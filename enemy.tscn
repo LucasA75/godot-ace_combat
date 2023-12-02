@@ -69,6 +69,7 @@ collision_mask = 0
 gravity_scale = 0.0
 max_contacts_reported = 99
 script = ExtResource("1_sfnum")
+powerUP_scene = ExtResource("5_xvf8s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 3.14159
@@ -88,7 +89,8 @@ frame_progress = 0.207003
 [node name="DieTime" type="Timer" parent="."]
 wait_time = 2.0
 
-[node name="powerUp" parent="." instance=ExtResource("5_xvf8s")]
+[node name="PowerUpTime" type="Timer" parent="."]
+wait_time = 5.0
 
 [connection signal="enemy_die" from="." to="." method="generate_reward"]
 [connection signal="enemy_hit" from="." to="." method="_on_enemy_hit"]

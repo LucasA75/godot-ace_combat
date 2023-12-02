@@ -3,6 +3,7 @@ signal enemy_hit
 signal enemy_die
 var life = 0
 var levelEnemy
+@export var powerUP_scene: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$EliminatedSprite.hide()
@@ -16,11 +17,15 @@ func _process(delta):
 	pass
 	
 func generate_reward():
-	var num_random = round(randf_range(0,12))
+	var num_random = round(randf_range(0,15))
 	print(num_random)
-	if(num_random == 4):
+	if(num_random == 1):
+		var powerUp = powerUP_scene.instantiate()
+		add_child(powerUp)
 		print("Generar Recompensa de Velocidad")
-	elif(num_random == 5 ):
+	elif(num_random == 2 ):
+		var powerUp = powerUP_scene.instantiate()
+		add_child(powerUp)
 		print("Generar recompensa de Ataque")
 	pass
 	
@@ -49,5 +54,12 @@ func _on_enemy_hit():
 		$EliminatedSprite.play()
 		$DieTime.start()
 		await $DieTime.timeout
+	
+		var childrenArray = get_children()
+		for children in childrenArray:
+			if children.name == "powerUp":
+				$EliminatedSprite.hide()
+				$PowerUpTime.start()
+				await  $PowerUpTime.timeout
 		queue_free()
 	pass # Replace with function body.

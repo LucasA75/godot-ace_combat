@@ -37,6 +37,7 @@ func _on_enemy_timer_timeout():
 
 	for i in range(3):
 		var enemy = enemy_scene.instantiate()
+		enemy.generate_reward()
 		arrayEnemys.append(enemy)
 	
 	var enemy_spawn_location = get_node("EnemyPath/EnemySpawnLocation")
@@ -52,7 +53,7 @@ func _on_enemy_timer_timeout():
 		enemy.level_of_enemy(change_dificulty_enemy())
 		add_child(enemy)
 		enemy.connect("enemy_die",_on_enemy_destroyed)	
-	pass # Replace with function body.
+	pass 
 
 func change_dificulty_enemy():
 	if time <= 40:
