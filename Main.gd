@@ -1,6 +1,7 @@
 extends Node
 @export var enemy_scene: PackedScene
 @export var bullet_scene: PackedScene
+@export var powerUP_scene: PackedScene
 var time
 var score
 
@@ -37,7 +38,6 @@ func _on_enemy_timer_timeout():
 
 	for i in range(3):
 		var enemy = enemy_scene.instantiate()
-		enemy.generate_reward()
 		arrayEnemys.append(enemy)
 	
 	var enemy_spawn_location = get_node("EnemyPath/EnemySpawnLocation")
@@ -51,8 +51,8 @@ func _on_enemy_timer_timeout():
 		var velocity = Vector2(150.0,0.0)
 		enemy.linear_velocity = velocity.rotated(direction)
 		enemy.level_of_enemy(change_dificulty_enemy())
-		add_child(enemy)
 		enemy.connect("enemy_die",_on_enemy_destroyed)	
+		add_child(enemy)
 	pass 
 
 func change_dificulty_enemy():
@@ -65,6 +65,7 @@ func change_dificulty_enemy():
 	pass
 
 func _on_enemy_destroyed():
+	print("Holas ")
 	score += 1
 	$HUD.update_score(score)
 	pass
@@ -74,8 +75,10 @@ func _on_start_time_timeout():
 	pass # Replace with function body.
 
 
-func _on_ship_shoot():
+
+func _on_ship_shoot(attack_value):
 	var bullet = bullet_scene.instantiate()
+	bullet.hit_value = attack_value
 	var ship_position = $Ship.position 
 	print(ship_position)
 	$SoundEffectBullet.play()

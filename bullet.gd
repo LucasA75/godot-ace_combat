@@ -1,5 +1,6 @@
 extends Area2D
 var velocidad = 300
+var hit_value = 0
 signal hitBullet
 
 # Called when the node enters the scene tree for the first time.
@@ -22,7 +23,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body.has_method("_on_enemy_hit"):
-		body.emit_signal("enemy_hit")
+		body.emit_signal("enemy_hit",hit_value)
 	queue_free()
 	
 	pass # Replace with function body.
