@@ -64,8 +64,8 @@ func change_dificulty_enemy():
 		return 3
 	pass
 
-func _on_enemy_destroyed():
-	print("Holas ")
+func _on_enemy_destroyed(enemyPosition):
+	generate_reward(enemyPosition)
 	score += 1
 	$HUD.update_score(score)
 	pass
@@ -74,13 +74,22 @@ func _on_start_time_timeout():
 	$EnemyTimer.start()
 	pass # Replace with function body.
 
-
+func generate_reward(position):
+	var num_random = round(randf_range(0,15))
+	if(num_random == 1 || num_random == 2):
+		var powerUp = powerUP_scene.instantiate()
+		powerUp.position = position
+		if(num_random == 1):
+			powerUp.power_type = "Velocity"
+		elif(num_random == 2 ):
+			powerUp.power_type = "Attack"
+		add_child(powerUp)
+	pass
 
 func _on_ship_shoot(attack_value):
 	var bullet = bullet_scene.instantiate()
 	bullet.hit_value = attack_value
 	var ship_position = $Ship.position 
-	print(ship_position)
 	$SoundEffectBullet.play()
 	bullet.position = Vector2(ship_position[0], ship_position[1] - 30.0)
 	add_child(bullet)

@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bboeggfivmkat"]
+[gd_scene load_steps=11 format=3 uid="uid://bboeggfivmkat"]
 
 [ext_resource type="Texture2D" uid="uid://fdvar6628abt" path="res://SpaceshipKit.png" id="1_qa2j8"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_sfnum"]
-[ext_resource type="PackedScene" uid="uid://efj27yormuak" path="res://power_up_2.tscn" id="2_d3o6q"]
 [ext_resource type="Texture2D" uid="uid://dswd5fio52cre" path="res://magic_particles_18.png" id="3_jgs5o"]
 [ext_resource type="Texture2D" uid="uid://bqjlwutckbu7b" path="res://magic_particles_19.png" id="4_3chnm"]
 
@@ -69,7 +68,6 @@ collision_mask = 0
 gravity_scale = 0.0
 max_contacts_reported = 99
 script = ExtResource("1_sfnum")
-powerUP_scene = ExtResource("2_d3o6q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 3.14159

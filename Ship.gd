@@ -62,13 +62,18 @@ func dead_ship():
 	dead.emit()
 	pass
 
+func manage_powerUp(powerUP):
+	if powerUP.power_type == "Velocity":
+		self.speed += 5
+		print("Se incremento la velocidad")
+	elif powerUP.power_type == "Attack":
+		self.attack_value += 1
+		print("Se incremento el ataque")
 
 func _on_body_entered(body):
-	if(body.name == "Power_UP2"):
-		if body.power_type == "Velocity":
-			self.speed += 5
-		elif body.power_type == "Attack":
-			self.attack_value += 1
+	var name_group = body.get_groups()[0]
+	if(name_group == "PowerUps"):
+		manage_powerUp(body)
 		body.queue_free()
 		return;
 	life -= 1
