@@ -35,10 +35,17 @@ func update_life(numberOfLifes):
 	print(numberOfLifes)
 	get_tree().call_group("lifes","queue_free")
 	show_life_player(numberOfLifes)
-	
+
+func update_powerUp(powerUp):
+	$TimerPowerUp.start()
+	$PowerUpLabel.show()
+	var text = "You got a power of {powerUP}"
+	$PowerUpLabel.text = text.format({"powerUP": powerUp})
+	await $TimerPowerUp.timeout
+	$PowerUpLabel.hide()
 
 func update_score(score):
-	var text = "Score : {score}"
+	var text = "Enemys : {score}"
 	$ScoreLabel.text = text.format({"score": score})
 
 

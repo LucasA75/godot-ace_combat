@@ -16,6 +16,7 @@ func new_game():
 	$GameTime.start()
 	$Ship.start($StartPosition.position)
 	$StartTime.start()
+	$HUD/PowerUpLabel.hide()
 	$Ship.life = 3
 	$Music.play()
 	$TutorialLayer.show_tutorial()
@@ -102,4 +103,8 @@ func _on_game_time_timeout():
 
 func _on_ship_hit():
 	$HUD.update_life($Ship.life)
+	pass # Replace with function body.
+
+func _on_ship_enhanced(power_type):
+	$HUD.update_powerUp(power_type)
 	pass # Replace with function body.

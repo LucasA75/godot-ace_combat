@@ -3,6 +3,7 @@ extends Area2D
 signal hit
 signal shoot
 signal dead
+signal enhanced
 var screen_size
 var attack_value = 1;
 @export var life = 0
@@ -64,11 +65,10 @@ func dead_ship():
 
 func manage_powerUp(powerUP):
 	if powerUP.power_type == "Velocity":
-		self.speed += 5
-		print("Se incremento la velocidad")
+		self.speed += 10
 	elif powerUP.power_type == "Attack":
 		self.attack_value += 1
-		print("Se incremento el ataque")
+	enhanced.emit(powerUP.power_type)
 
 func _on_body_entered(body):
 	var name_group = body.get_groups()[0]

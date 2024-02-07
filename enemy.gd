@@ -42,8 +42,7 @@ func _on_enemy_hit(hit_value):
 		enemy_die.emit(self.position)
 		$DieTime.start()
 		await $DieTime.timeout
-		var childrenArray = get_children()
-		for children in childrenArray:
+		for children in get_children():
 			$EliminatedSprite.hide()
 			$PowerUpTime.start()
 			await  $PowerUpTime.timeout

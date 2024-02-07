@@ -13,11 +13,13 @@ func start(pos):
 	show()
 	$CollisionShape2D.disabled = false
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position.y -= velocidad * delta
 	if position.y < -get_viewport_rect().size.y / 2:
 		queue_free()
+		
 	pass
 
 
