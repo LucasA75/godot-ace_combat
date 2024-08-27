@@ -22,6 +22,7 @@ func new_game():
 	$TutorialLayer.show_tutorial()
 	$HUD.show_life_player($Ship.life)
 	get_tree().call_group("enemys","queue_free")
+	get_tree().call_group("PowerUps","queue_free")
 	pass
 
 func game_over():

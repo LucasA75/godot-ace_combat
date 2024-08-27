@@ -1,21 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://efj27yormuak"]
+[gd_scene load_steps=8 format=3 uid="uid://efj27yormuak"]
 
 [ext_resource type="Script" path="res://power_up_2.gd" id="1_0hqg5"]
-[ext_resource type="Texture2D" uid="uid://6h1i2njv0pgy" path="res://uipackSpace_sheet.png" id="1_jlxdn"]
+[ext_resource type="Texture2D" uid="uid://d1fh8bryj7048" path="res://tilemap.png" id="2_bmrui"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ceg5v"]
-atlas = ExtResource("1_jlxdn")
-region = Rect2(384, 393, 24, 28)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0twl4"]
+atlas = ExtResource("2_bmrui")
+region = Rect2(119, 85, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ji3op"]
-atlas = ExtResource("1_jlxdn")
-region = Rect2(384, 449, 24, 28)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch8k4"]
+atlas = ExtResource("2_bmrui")
+region = Rect2(102, 85, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80x58"]
+atlas = ExtResource("2_bmrui")
+region = Rect2(306, 51, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v8y5e"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ceg5v")
+"texture": SubResource("AtlasTexture_0twl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ch8k4")
 }],
 "loop": true,
 "name": &"attack",
@@ -23,7 +30,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ji3op")
+"texture": SubResource("AtlasTexture_80x58")
 }],
 "loop": true,
 "name": &"velocity",
@@ -35,13 +42,14 @@ size = Vector2(19, 26)
 
 [node name="Power_UP2" type="RigidBody2D" groups=["PowerUps"]]
 gravity_scale = 0.0
-freeze = true
 script = ExtResource("1_0hqg5")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." groups=["PowerUps"]]
 position = Vector2(1, 0)
+scale = Vector2(1.8, 1.8)
 sprite_frames = SubResource("SpriteFrames_v8y5e")
 animation = &"velocity"
+frame_progress = 0.163439
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["PowerUps"]]
 position = Vector2(-1.5, 0)
